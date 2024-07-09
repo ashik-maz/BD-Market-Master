@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "649019361747",
+    "project_id": "bd-market-masters",
+    "storage_bucket": "bd-market-masters.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649019361747:android:9573ddb75ad19ce1398726",
+        "android_client_info": {
+          "package_name": "com.example.bdm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKFar1TUsumEmTIoDWkE9901qfUtXOQhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
