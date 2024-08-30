@@ -209,13 +209,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     children: [
                       GoogleFacebookLogIn(
                         label: 'Google',
-                        onPresssed: () {},
+                        onPresssed: () {
+                          
+                        },
                         child: const Image(
                             image: AssetImage('images/inapp/google.jpg')),
                       ),
                       GoogleFacebookLogIn(
                         label: 'Facebook',
-                        onPresssed: () {},
+                        onPresssed: () {
+                          
+                        },
                         child: const Image(
                             image: AssetImage('images/inapp/facebook.jpg')),
                       ),
@@ -231,18 +235,21 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                     .signInAnonymously()
                                     .whenComplete(() async {
                                   _uid = FirebaseAuth.instance.currentUser!.uid;
-                                  await anonymous.doc(_uid).set({
-                                    'name': '',
-                                    'email': '',
-                                    'profileimage': '',
-                                    'phone': '',
-                                    'address': '',
-                                    'cid': _uid
-                                  });
-                                });
+                                  await anonymous.doc(_uid).set(
+                                    {
+                                      'name': '',
+                                      'email': '',
+                                      'profileimage': '',
+                                      'phone': '',
+                                      'address': '',
+                                      'cid': _uid
+                                    },
+                                  );
+                                }
+                                );
 
                                 Navigator.pushReplacementNamed(
-                                    context, '/home');
+                                    context, '/customer_home');
                               },
                               child: const Icon(
                                 Icons.person,
@@ -282,7 +289,12 @@ class AnimatedLogo extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.all(5.0),
-        child: const Image(image: AssetImage('images/inapp/world.png',),height: 60,),
+        child: const Image(
+          image: AssetImage(
+            'images/inapp/world.png',
+          ),
+          height: 60,
+        ),
       ),
     );
   }

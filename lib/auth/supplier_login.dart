@@ -30,7 +30,7 @@ class _SupplierLoginState extends State<SupplierLogin> {
 
         _formKey.currentState!.reset();
 
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacementNamed(context, '/supplier_home');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           setState(() {

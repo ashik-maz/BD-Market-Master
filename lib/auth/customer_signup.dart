@@ -109,7 +109,7 @@ class _CustomerRegisterState extends State<CustomerRegister> {
             _imageFile = null;
           });
 
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/customer_home');
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             setState(() {

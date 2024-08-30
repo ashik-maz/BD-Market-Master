@@ -99,9 +99,9 @@ class _SupplierRegisterState extends State<SupplierRegister> {
           storeLogo = await ref.getDownloadURL();
           await suppliers.doc(_uid).set({
             'storename': storeName,
-            'ownername':ownerName,
-            'date_of_birth':dob,
-            'nid':nid,
+            'ownername': ownerName,
+            'date_of_birth': dob,
+            'nid': nid,
             'email': email,
             'storelogo': storeLogo,
             'phone': '',
@@ -113,7 +113,7 @@ class _SupplierRegisterState extends State<SupplierRegister> {
             _imageFile = null;
           });
 
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/supplier_home');
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             setState(() {
@@ -252,9 +252,6 @@ class _SupplierRegisterState extends State<SupplierRegister> {
                           ),
                         ),
                       ),
-
-
-
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: TextFormField(
@@ -283,7 +280,6 @@ class _SupplierRegisterState extends State<SupplierRegister> {
                             }
                             return null;
                           },
-                          
                           controller: _datecontroller,
                           onChanged: (value) {
                             dob = value;
@@ -360,10 +356,9 @@ class _SupplierRegisterState extends State<SupplierRegister> {
                         actionLabel: 'Log In',
                         onPressed: () {
                           Navigator.pushReplacementNamed(
-                              context, '/customer_login');
+                              context, '/supplier_login');
                         },
                       ),
-
                       processing == true
                           ? const CircularProgressIndicator(
                               color: Colors.purple,
@@ -384,6 +379,9 @@ class _SupplierRegisterState extends State<SupplierRegister> {
       ),
     );
   }
+
+  
+
   Future<void> _selectDate() async {
     DateTime? picked = await showDatePicker(
       context: context,
