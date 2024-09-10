@@ -209,17 +209,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     children: [
                       GoogleFacebookLogIn(
                         label: 'Google',
-                        onPresssed: () {
-                          
-                        },
+                        onPresssed: () {},
                         child: const Image(
                             image: AssetImage('images/inapp/google.jpg')),
                       ),
                       GoogleFacebookLogIn(
                         label: 'Facebook',
-                        onPresssed: () {
-                          
-                        },
+                        onPresssed: () {},
                         child: const Image(
                             image: AssetImage('images/inapp/facebook.jpg')),
                       ),
@@ -245,8 +241,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                       'cid': _uid
                                     },
                                   );
-                                }
-                                );
+                                });
 
                                 Navigator.pushReplacementNamed(
                                     context, '/customer_home');

@@ -70,7 +70,7 @@ class _ProductModelState extends State<ProductModel> {
                                   '\৳ ',
                                   style: TextStyle(
                                       color: Colors.red,
-                                      fontSize: 16,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
@@ -78,13 +78,13 @@ class _ProductModelState extends State<ProductModel> {
                                   style: onSale != 0
                                       ? const TextStyle(
                                           color: Colors.grey,
-                                          fontSize: 11,
+                                          fontSize: 8,
                                           decoration:
                                               TextDecoration.lineThrough,
                                           fontWeight: FontWeight.w600)
                                       : const TextStyle(
                                           color: Colors.red,
-                                          fontSize: 16,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.w600),
                                 ),
                                 const SizedBox(
@@ -100,7 +100,7 @@ class _ProductModelState extends State<ProductModel> {
                                             .toStringAsFixed(2),
                                         style: const TextStyle(
                                             color: Colors.red,
-                                            fontSize: 16,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.w600),
                                       )
                                     : const Text(''),

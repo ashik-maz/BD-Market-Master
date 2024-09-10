@@ -46,9 +46,12 @@ class SupplierOrderModel extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(('\৳ ') +
-                              (order['orderprice'].toStringAsFixed(2))),
-                          Text(('x ') + (order['orderqty'].toString()))
+                          Text(
+                            ('\৳ ') + (order['orderprice'].toStringAsFixed(2)),
+                            style: TextStyle(fontSize: 8),
+                          ),
+                          Text(('x ') + (order['orderqty'].toString()),
+                              style: TextStyle(fontSize: 12))
                         ],
                       ),
                     )
