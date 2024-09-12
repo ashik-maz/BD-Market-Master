@@ -123,7 +123,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             Row(
                               children: [
                                 const Text(
-                                  'USD  ',
+                                  'TAKA  ',
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 16,
@@ -351,10 +351,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 widget.proList['proname'],
                                 onSale != 0
                                     ? ((1 -
-                                            (widget.proList['discount'] /
+                                            (widget.proList['discount']
+                                                    .toDouble() /
                                                 100)) *
-                                        widget.proList['price'])
-                                    : widget.proList['price'],
+                                        widget.proList['price'].toDouble())
+                                    : widget.proList['price'].toDouble(),
                                 1,
                                 widget.proList['instock'],
                                 widget.proList['proimages'],

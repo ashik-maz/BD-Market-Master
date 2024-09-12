@@ -20,38 +20,70 @@ class _CustomerLoginState extends State<CustomerLogin> {
       GlobalKey<ScaffoldMessengerState>();
   bool passwordVisible = false;
 
-  void logIn() async {
+  Future<void> logIn() async {
     setState(() {
       processing = true;
     });
+
     if (_formKey.currentState!.validate()) {
       try {
         await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
 
         _formKey.currentState!.reset();
-
         Navigator.pushReplacementNamed(context, '/customer_home');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
-          setState(() {
-            processing = false;
-          });
           MyMessageHandler.showSnackBar(
               _scaffoldKey, 'No user found for that email.');
         } else if (e.code == 'wrong-password') {
-          setState(() {
-            processing = false;
-          });
           MyMessageHandler.showSnackBar(
               _scaffoldKey, 'Wrong password provided for that user.');
+        } else {
+          MyMessageHandler.showSnackBar(
+              _scaffoldKey, 'An error occurred. Please try again.');
         }
+        // Stop the spinner after handling error
+        setState(() {
+          processing = false;
+        });
+      } catch (e) {
+        // Handle any other errors that might occur
+        MyMessageHandler.showSnackBar(
+            _scaffoldKey, 'An unexpected error occurred.');
+        setState(() {
+          processing = false;
+        });
       }
     } else {
+      MyMessageHandler.showSnackBar(_scaffoldKey, 'Please fill all fields.');
       setState(() {
         processing = false;
       });
-      MyMessageHandler.showSnackBar(_scaffoldKey, 'please fill all fields');
+    }
+  }
+
+  Future<void> resetPassword() async {
+    if (email.isEmpty) {
+      MyMessageHandler.showSnackBar(_scaffoldKey, 'Please enter your email.');
+      return;
+    }
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      MyMessageHandler.showSnackBar(_scaffoldKey, 'Password reset email sent.');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        MyMessageHandler.showSnackBar(_scaffoldKey, 'Invalid email address.');
+      } else if (e.code == 'user-not-found') {
+        MyMessageHandler.showSnackBar(
+            _scaffoldKey, 'No user found for that email.');
+      } else {
+        MyMessageHandler.showSnackBar(_scaffoldKey, 'An error occurred.');
+      }
+    } catch (e) {
+      // Handle any other errors that might occur
+      MyMessageHandler.showSnackBar(
+          _scaffoldKey, 'An unexpected error occurred.');
     }
   }
 
@@ -81,18 +113,15 @@ class _CustomerLoginState extends State<CustomerLogin> {
                         child: TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'please enter your email ';
-                            } else if (value.isValidEmail() == false) {
-                              return 'invalid email';
-                            } else if (value.isValidEmail() == true) {
-                              return null;
+                              return 'Please enter your email.';
+                            } else if (!value.isValidEmail()) {
+                              return 'Invalid email address.';
                             }
                             return null;
                           },
                           onChanged: (value) {
                             email = value;
                           },
-                          //  controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: textFormDecoration.copyWith(
                             labelText: 'Email Address',
@@ -105,15 +134,14 @@ class _CustomerLoginState extends State<CustomerLogin> {
                         child: TextFormField(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'please enter your password';
+                              return 'Please enter your password.';
                             }
                             return null;
                           },
                           onChanged: (value) {
                             password = value;
                           },
-                          //   controller: _passwordController,
-                          obscureText: passwordVisible,
+                          obscureText: !passwordVisible,
                           decoration: textFormDecoration.copyWith(
                             suffixIcon: IconButton(
                                 onPressed: () {
@@ -133,21 +161,24 @@ class _CustomerLoginState extends State<CustomerLogin> {
                         ),
                       ),
                       TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Forget Password ?',
-                            style: TextStyle(
-                                fontSize: 18, fontStyle: FontStyle.italic),
-                          )),
+                        onPressed: () {
+                          resetPassword();
+                        },
+                        child: const Text(
+                          'Forgot Password?',
+                          style: TextStyle(
+                              fontSize: 18, fontStyle: FontStyle.italic),
+                        ),
+                      ),
                       HaveAccount(
-                        haveAccount: 'Don\'t Have Account? ',
+                        haveAccount: 'Don\'t Have an Account? ',
                         actionLabel: 'Sign Up',
                         onPressed: () {
                           Navigator.pushReplacementNamed(
                               context, '/customer_signup');
                         },
                       ),
-                      processing == true
+                      processing
                           ? const Center(
                               child: CircularProgressIndicator(
                               color: Colors.purple,

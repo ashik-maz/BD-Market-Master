@@ -138,7 +138,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
-                                                              .symmetric(
+                                                          .symmetric(
                                                           vertical: 4,
                                                           horizontal: 12),
                                                       child: Row(
@@ -193,7 +193,7 @@ class _PlaceOrderScreenState extends State<PlaceOrderScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: YellowButton(
-                        label: 'Confirm ${totalPrice.toStringAsFixed(2)} USD',
+                        label: 'Confirm ${totalPrice.toStringAsFixed(2)} TAKA',
                         width: 1,
                         onPressed: () {
                           Navigator.push(

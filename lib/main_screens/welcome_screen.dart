@@ -162,40 +162,69 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              Column(
                 children: [
-                  Container(
-                    height: 60,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: const BoxDecoration(
-                        color: Colors.white38,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(50),
-                            bottomRight: Radius.circular(50))),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: YellowButton(
-                              label: 'Log In',
-                              onPressed: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/customer_login');
-                              },
-                              width: 0.25),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                            color: Colors.white38,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(50),
+                                bottomRight: Radius.circular(50))),
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            'Customers only',
+                            style: TextStyle(
+                                color: Colors.yellowAccent,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
-                        YellowButton(
-                            label: 'Sign Up',
-                            onPressed: () {
-                              Navigator.pushReplacementNamed(
-                                  context, '/customer_signup');
-                            },
-                            width: 0.25),
-                        AnimatedLogo(controller: _controller),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: const BoxDecoration(
+                            color: Colors.white38,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(50),
+                                bottomRight: Radius.circular(50))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: YellowButton(
+                                  label: 'Log In',
+                                  onPressed: () {
+                                    Navigator.pushReplacementNamed(
+                                        context, '/customer_login');
+                                  },
+                                  width: 0.25),
+                            ),
+                            YellowButton(
+                                label: 'Sign Up',
+                                onPressed: () {
+                                  Navigator.pushReplacementNamed(
+                                      context, '/customer_signup');
+                                },
+                                width: 0.25),
+                            AnimatedLogo(controller: _controller),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
